@@ -62,4 +62,14 @@ class AuthController extends Controller
             'token' => $jwt_token,
         ]);
     }
+
+    public function me()
+    {
+        return response()->json(
+            [
+                "success" => true,
+                "data" => auth()->user()
+            ]
+        );
+    }
 }

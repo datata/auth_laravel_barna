@@ -15,10 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function() {
+Route::get('/', function () {
     return 'Bienvenido';
 });
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::group(
+    ['middleware' => 'jwt.auth'],
+    function () {
+        Route::get('/me', [AuthController::class, 'me']);
+    }
+);
