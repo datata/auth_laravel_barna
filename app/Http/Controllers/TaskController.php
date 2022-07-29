@@ -36,8 +36,5 @@ class TaskController extends Controller
                 500
                 ); 
         }
-
-
-        return 'Create Task';
     }
 }
