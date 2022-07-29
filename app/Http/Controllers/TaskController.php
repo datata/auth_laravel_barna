@@ -67,7 +67,45 @@ class TaskController extends Controller
                 500
                 ); 
         }
+    }
 
-        return 'GetAllTasks';
+    public function getOneTasksById($id)
+    {
+        try {
+            Log::info('Get task by id');
+            
+            $userId = auth()->user()->id;
+
+            $task = Task::query()->where('user_id', '=', $userId)->find($id);
+            
+            if(!$task) {
+                return response()->json(
+                    [
+                        "success" => true,
+                        "message" => "Task not found",
+                    ],
+                    404
+                ); 
+            }
+            
+            return response()->json(
+                [
+                    "success" => true,
+                    "message" => "Task retrieved successfully",
+                    "data" => $task
+                ]
+            );
+
+        } catch (\Exception $exception) {
+            Log::error('Error getting task by id: '.$exception->getMessage());
+
+            return response()->json(
+                [
+                    "success" => true,
+                    "message" => "Error getting task"
+                ],
+                500
+                ); 
+        }
     }
 }
