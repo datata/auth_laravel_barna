@@ -39,6 +39,7 @@ Route::group(["middleware" => ["jwt.auth", "isSuperAdmin"]] , function() {
 // TASKS
 Route::group(["middleware" => "jwt.auth"] , function() {
     Route::post('/tasks', [TaskController::class, 'createTask']);
+    Route::get('/tasks', [TaskController::class, 'getAllTasksByUserId']);
 });
 
 
