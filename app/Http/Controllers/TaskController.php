@@ -83,8 +83,7 @@ class TaskController extends Controller
                     [
                         "success" => true,
                         "message" => "Task not found",
-                    ],
-                    404
+                    ]
                 ); 
             }
             
